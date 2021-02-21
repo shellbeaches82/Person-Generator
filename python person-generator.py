@@ -1,4 +1,5 @@
 from tkinter import *
+import tkinter as tk
 import csv
 import os.path
 import random
@@ -79,11 +80,17 @@ else:
             genNum = int(numInput.get())
             exportData = []
             count = genNum
+            text_widget = tk.Text(root, height=60, width=60) #set up text widget for output on gui ref: https://www.askpython.com/python-modules/tkinter/tkinter-text-widget-tkinter-scrollbar
+            scroll_bar = tk.Scrollbar(root) #add scroll bar for text widget
+            scroll_bar.pack(side=tk.RIGHT)
+            text_widget.pack(side =tk.LEFT)
             while count != 0:
                 x = random.randint(1, 280000)
-                toDo1 = Label(root, text=addData[x])
+                #toDo1 = Label(root, text=addData[x])
+                toDo1 = addData[x]
                 exportData.append([state, genNum,"street address", addData[x]])
-                toDo1.pack()
+                #toDo1.pack()
+                text_widget.insert(tk.END, toDo1 + "\n") #put generated data into text widget
                 count -= 1
 
 
